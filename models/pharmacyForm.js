@@ -1,7 +1,11 @@
 const mongoose = require("mongoose");
-const comnpanySchema = new mongoose.Schema({
-    full_name : String,
-    company_name : String,
+const pharmacySchema = new mongoose.Schema({
+    req_for : String,
+    product_code : Number,
+    details_existing_product : String,
+    details_of_changes : String,
+    specification : String,
+    category : String,
     short_name : String,
     unit : String,
     desc_and_spec : String,
@@ -16,6 +20,9 @@ const comnpanySchema = new mongoose.Schema({
     manufactured_by2 : String,
     rate_per_unit : String,
     price_ref : String,
+    suggested_by : String,
+    counter_signed_by : String,
+    avg_monthly_consumption : String,
     file_quotation_lpr : String,
     file_pac_certif : String,
     file_manufacture_impoeter_supplier : String,
@@ -23,7 +30,6 @@ const comnpanySchema = new mongoose.Schema({
     file_other_doc1 : String,
     file_other_doc2 : String,
     file_other_doc3 : String,
-    approval_status : String
 })
 
-module.exports = mongoose.model("Company", comnpanySchema);
+module.exports = mongoose.model("Pharmacy", pharmacySchema);

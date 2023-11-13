@@ -1,7 +1,7 @@
 const CompanyFormSchema = require("../models/companyForm");
 
 const createCompanyForm = async(req, res) => {
-    console.log("inside");
+    console.log("create Company form");
     try{
         const addCompanyDetails = new CompanyFormSchema(req.body);
         const createCompanyDetails = await addCompanyDetails.save();
@@ -12,6 +12,7 @@ const createCompanyForm = async(req, res) => {
 }
 
 const  getAllCompanyForms = async (req, res) => {
+  console.log("Getting ALl Company FOrms");
    
     try{
         const getCompanyForm = await CompanyFormSchema.find({});

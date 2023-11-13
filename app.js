@@ -6,10 +6,9 @@ var cors = require("cors");
 app.use(cors());
 require("./db/conn");
 const path = require('path');
-app.use(express.static(path.join(__dirname, 'build')));
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-  });
+//app.use(express.static(path.join(__dirname, 'build')));
+
+
 
 let port = 8080;
 const CompanyFormRouter = require("./router/companyFormRouter");
@@ -22,3 +21,18 @@ app.use(PharmacyRouter);
 app.listen(port, function(){
     console.log("Listening to port", port);
 })
+
+app.use((req, res, next) => {
+  console.log(`Received request for: ${req.method} ${req.url}`);
+  next();
+});
+
+
+// app.use(express.static(__dirname))
+app.use(express.static(path.join(__dirname,'build')))
+console.log("logged");
+app.get('*', (req, res) => {
+  res.sendFile('index.html', { root: path.join(__dirname, 'build') });
+});
+
+

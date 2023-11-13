@@ -1,6 +1,7 @@
 const DoctorSchema = require("../models/doctorForm");
 
 const addDoctor = async (req, res) => {
+    console.log("added doc")
     try{
         const addDoctor = new DoctorSchema(req.body);
         const createDoctor = await addDoctor.save();

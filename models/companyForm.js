@@ -23,7 +23,10 @@ const comnpanySchema = new mongoose.Schema({
     file_other_doc1 : String,
     file_other_doc2 : String,
     file_other_doc3 : String,
-    approval_status : String
+    approval_status : {
+        type:Boolean,
+        default : false
+      }
 })
 
 module.exports = mongoose.model("Company", comnpanySchema);

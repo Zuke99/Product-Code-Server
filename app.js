@@ -15,10 +15,12 @@ const CompanyFormRouter = require("./router/companyFormRouter");
 const DoctorRouter = require("./router/doctor");
 const PharmacyRouter = require("./router/pharmacyRouter");
 const TrackerRouter = require("./router/trackerRouter");
+const UserRouter = require("./router/userRouter");
 app.use(CompanyFormRouter);
 app.use(DoctorRouter);
 app.use(PharmacyRouter);
 app.use(TrackerRouter);
+app.use(UserRouter);
 
 app.listen(port, function(){
     console.log("Listening to port", port);

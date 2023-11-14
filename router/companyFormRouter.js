@@ -1,7 +1,7 @@
 const express = require("express");
 const router = new express.Router();
 const controller = require("../controller/CompanyFormController")
-const path = require('path');
+const middleware = require("../middlewares/userMiddlewares");
 //AddCompanyForm
 router.post("/company/company-form", controller.createCompanyForm);
 router.get("/company/getall-company-form", controller.getAllCompanyForms);

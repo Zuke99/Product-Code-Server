@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const pharmacySchema = new mongoose.Schema({
+    sl_no : Number,
     req_for : String,
     product_code : Number,
     details_existing_product : String,

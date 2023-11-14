@@ -14,9 +14,11 @@ let port = 8080;
 const CompanyFormRouter = require("./router/companyFormRouter");
 const DoctorRouter = require("./router/doctor");
 const PharmacyRouter = require("./router/pharmacyRouter");
+const TrackerRouter = require("./router/trackerRouter");
 app.use(CompanyFormRouter);
 app.use(DoctorRouter);
 app.use(PharmacyRouter);
+app.use(TrackerRouter);
 
 app.listen(port, function(){
     console.log("Listening to port", port);

@@ -12,8 +12,18 @@ const addPharmacyForm = async (req,res) => {
       }
 }
 
+const getAllPharmacyForms = async(req, res) => {
+    try{
+        const getPharmacyList = await PharmacySchema.find({});
+        res.send({status : true, data : getPharmacyList , message : "Pharmacy list retrieved Successfully"});
+    } catch (e) {
+        res.send({status : false , data : e, message : "Couldn't get Pharmacy Form Data"});
+    }
+}
+
 
 module.exports = {
 addPharmacyForm,
+getAllPharmacyForms
 
 }

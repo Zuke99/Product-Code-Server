@@ -26,15 +26,14 @@ app.listen(port, function(){
     console.log("Listening to port", port);
 })
 
-app.use((req, res, next) => {
-  console.log(`Received request for: ${req.method} ${req.url}`);
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log(`Received request for: ${req.method} ${req.url}`);
+//   next();
+// });
 
 
 // app.use(express.static(__dirname))
 app.use(express.static(path.join(__dirname,'build')))
-console.log("logged");
 app.get('*', (req, res) => {
   res.sendFile('index.html', { root: path.join(__dirname, 'build') });
 });

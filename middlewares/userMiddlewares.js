@@ -4,7 +4,7 @@ const UserSchema = require("../models/users")
 
 const verifyToken = async (req,res, next) => {
     let token = await req.headers["authorization"];
-    console.log("verif", token);
+
     if(!token){
         res.send({status:false,message:"A token is required for authentication"});
     } else {

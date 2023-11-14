@@ -19,7 +19,7 @@ const  getAllCompanyForms = async (req, res) => {
         res.send({status : true, data : getCompanyForm, message : "Form Requests retrieval Successfull"} );
     } 
     catch (e) {
-        res.send({status : false , data : e, message : "Couldn't get the Forms2"});
+        res.send({status : false , data : e, message : "Couldn't get the Forms"});
       }
 }
 

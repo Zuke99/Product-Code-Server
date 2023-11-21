@@ -1,7 +1,7 @@
 const PharmacySchema = require("../models/pharmacyForm");
 
 const addPharmacyForm = async (req,res) => {
-    console.log("pharmaform");
+
     try{
         const addPharmacyForm = new PharmacySchema(req.body);
         const createPharmacyForm = await addPharmacyForm.save();

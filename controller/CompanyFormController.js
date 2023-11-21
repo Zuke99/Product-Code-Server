@@ -1,9 +1,10 @@
 const CompanyFormSchema = require("../models/companyForm");
 
 const createCompanyForm = async(req, res) => {
-    console.log("create Company form");
+    console.log("create Company form", req.body);
     try{
         const addCompanyDetails = new CompanyFormSchema(req.body);
+
         const createCompanyDetails = await addCompanyDetails.save();
         res.send({status : true, data : createCompanyDetails, message : "Data Submitted Successfully"});
     } catch (e) {

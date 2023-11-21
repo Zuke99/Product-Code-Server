@@ -1,7 +1,7 @@
 const DoctorSchema = require("../models/doctorForm");
 
 const addDoctor = async (req, res) => {
-    console.log("added doc")
+    
     try{
         const addDoctor = new DoctorSchema(req.body);
         const createDoctor = await addDoctor.save();
@@ -21,7 +21,25 @@ const getAllDoctors = async(req, res) => {
       }
 }
 
+const deleteDoctor = async (req, res) => {
+    try {
+        const doctorId = req.params.id; // Assuming the doctor ID is passed in the request parameters
+        console.log('Delete DOc', req.params.id)
+        // Assuming DoctorSchema is your Mongoose model
+        const deletedDoctor = await DoctorSchema.findByIdAndDelete(doctorId);
+
+        if (!deletedDoctor) {
+            return res.send({ status: false, message: "Doctor not found" });
+        }
+
+        res.send({ status: true, data: deletedDoctor, message: "Doctor deleted successfully" });
+    } catch (e) {
+        res.send({ status: false, data: e, message: "Couldn't delete Doctor" });
+    }
+};
+
 module.exports = {
     addDoctor,
-    getAllDoctors
+    getAllDoctors,
+    deleteDoctor
 }

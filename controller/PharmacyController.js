@@ -12,6 +12,24 @@ const addPharmacyForm = async (req,res) => {
       }
 }
 
+const updatePharmacyForm = async (req, res) => {
+    const id = req.body._id; // Assuming the ID of the document to update is passed in the URL parameters
+    const updateFields = req.body; // Fields to update are passed in the request body
+
+    try {
+        const updatedPharmacyForm = await PharmacySchema.findByIdAndUpdate(id, updateFields, { new: true });
+        
+        if (!updatedPharmacyForm) {
+            return res.send({ status: false, message: 'Form not found' });
+        }
+
+        res.send({ status: true, data: updatedPharmacyForm, message: 'Form updated successfully' });
+    } catch (error) {
+        res.send({ status: false, data: error, message: 'Failed to update the form' });
+    }
+};
+
+
 const getAllPharmacyForms = async(req, res) => {
     try{
         const getPharmacyList = await PharmacySchema.find({});
@@ -24,6 +42,7 @@ const getAllPharmacyForms = async(req, res) => {
 
 module.exports = {
 addPharmacyForm,
-getAllPharmacyForms
+getAllPharmacyForms,
+updatePharmacyForm
 
 }

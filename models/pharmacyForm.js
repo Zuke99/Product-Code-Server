@@ -34,7 +34,9 @@ const pharmacySchema = new mongoose.Schema({
     file_other_doc2 : String,
     file_other_doc3 : String,
     suggested_by_designation : String,
-    counter_signed_by_designation : String
+    counter_signed_by_designation : String,
+    date_of_submission : Date,
+    date_of_generation : Date
 })
 
 module.exports = mongoose.model("Pharmacy", pharmacySchema);

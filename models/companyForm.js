@@ -26,7 +26,8 @@ const comnpanySchema = new mongoose.Schema({
     approval_status : {
         type:Boolean,
         default : false
-      }
+      },
+    date_of_submission : String
 })
 
 module.exports = mongoose.model("Company", comnpanySchema);

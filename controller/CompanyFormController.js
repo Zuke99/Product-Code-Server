@@ -12,16 +12,16 @@ const createCompanyForm = async(req, res) => {
       }
 }
 
-const  getAllCompanyForms = async (req, res) => {
-  console.log("Getting ALl Company FOrms");
+const getAllCompanyForms = async (req, res) => {
+  console.log("Getting All Company Forms");
    
-    try{
-        const getCompanyForm = await CompanyFormSchema.find({});
-        res.send({status : true, data : getCompanyForm, message : "Form Requests retrieval Successfull"} );
+    try {
+        const getCompanyForm = await CompanyFormSchema.find({})
+        res.send({status: true, data: getCompanyForm, message: "Form Requests retrieval Successful"});
     } 
     catch (e) {
-        res.send({status : false , data : e, message : "Couldn't get the Forms"});
-      }
+        res.send({status: false, data: e, message: "Couldn't get the Forms"});
+    }
 }
 
 const approveCompanyForm = async (req, res) => {
@@ -56,8 +56,16 @@ const approveCompanyForm = async (req, res) => {
     }
 }
 
+const deleteCompanyForm = async (req, res) => {
+    const id = req.params.id;
+    console.log("the id to delete is", id);
+    const deleteCompanyForm = await CompanyFormSchema.findByIdAndDelete(id);
+    res.send({status : true, data : deleteCompanyForm, message : "Form Deleted Successfully"});
+}
+
 module.exports = {
     createCompanyForm,
     getAllCompanyForms,
-    approveCompanyForm
+    approveCompanyForm,
+    deleteCompanyForm
 }

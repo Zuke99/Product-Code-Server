@@ -6,5 +6,5 @@ const middleware = require("../middlewares/userMiddlewares");
 router.post("/company/company-form", controller.createCompanyForm);
 router.get("/company/getall-company-form", controller.getAllCompanyForms);
 router.put("/company/update-approval-status", controller.approveCompanyForm)
-
+router.delete("/company/delete-company-form/:id", controller.deleteCompanyForm)
 module.exports = router;

@@ -6,5 +6,5 @@ const middleware = require("../middlewares/userMiddlewares");
 router.post("/pharmacy/add-pharmacy-form", controller.addPharmacyForm);
 router.get("/pharmacy/get-all-pharmacy", controller.getAllPharmacyForms);
 router.put("/pharmacy/update-pharmacy-form", controller.updatePharmacyForm);
-
+router.get("/pharmacy/get-pharmacy-forms-by-description/:description", controller.getPharmacyFormsByDescription);
 module.exports = router;

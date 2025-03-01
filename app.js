@@ -10,7 +10,7 @@ const path = require('path');
 
 
 
-let port = 8080;
+let port = 8084;
 const CompanyFormRouter = require("./router/companyFormRouter");
 const DoctorRouter = require("./router/doctor");
 const PharmacyRouter = require("./router/pharmacyRouter");

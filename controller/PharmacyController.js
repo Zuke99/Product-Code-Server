@@ -57,10 +57,28 @@ const getAllPharmacyForms = async(req, res) => {
     }
 }
 
+const getPharmacyFormsByDescription = async (req, res) => {
+    try {
+        const getPharmacyFormsByDescription = await PharmacySchema.find({
+          desc_and_spec: { $regex: description, $options: 'i' }
+        });
+        res.send({
+            status: true, 
+            data: getPharmacyFormsByDescription, 
+            message: "Form Retrieved Successfully"
+        });
+    } catch (e) {
+        res.send({
+            status: false, 
+            data: e, 
+            message: "Failed to retrieve forms"
+        });
+    }
+}
 
 module.exports = {
-addPharmacyForm,
-getAllPharmacyForms,
-updatePharmacyForm
-
+    addPharmacyForm,
+    getAllPharmacyForms,
+    updatePharmacyForm,
+    getPharmacyFormsByDescription
 }

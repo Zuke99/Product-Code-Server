@@ -31,11 +31,29 @@ const updatePharmacyForm = async (req, res) => {
 
 
 const getAllPharmacyForms = async(req, res) => {
-    try{
-        const getPharmacyList = await PharmacySchema.find({});
-        res.send({status : true, data : getPharmacyList , message : "Pharmacy list retrieved Successfully"});
+    try {
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 15;
+        const skip = (page - 1) * limit;
+
+        const totalDocs = await PharmacySchema.countDocuments({});
+        const totalPages = Math.ceil(totalDocs / limit);
+        
+        const getPharmacyList = await PharmacySchema.find({})
+            .sort({ sl_no: -1 })
+            .skip(skip)
+            .limit(limit);
+
+        res.send({
+            status: true, 
+            data: getPharmacyList,
+            currentPage: page,
+            totalPages: totalPages,
+            totalDocs: totalDocs,
+            message: "Pharmacy list retrieved Successfully"
+        });
     } catch (e) {
-        res.send({status : false , data : e, message : "Couldn't get Pharmacy Form Data"});
+        res.send({status: false, data: e, message: "Couldn't get Pharmacy Form Data"});
     }
 }
 

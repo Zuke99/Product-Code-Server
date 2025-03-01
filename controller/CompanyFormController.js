@@ -13,14 +13,31 @@ const createCompanyForm = async(req, res) => {
 }
 
 const getAllCompanyForms = async (req, res) => {
-  console.log("Getting All Company Forms");
-   
     try {
-        const getCompanyForm = await CompanyFormSchema.find({})
-        res.send({status: true, data: getCompanyForm, message: "Form Requests retrieval Successful"});
-    } 
-    catch (e) {
-        res.send({status: false, data: e, message: "Couldn't get the Forms"});
+        
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 15; // Make sure this is being respected
+        const skip = (page - 1) * limit;
+
+        // Add a filter for unapproved forms
+        const totalDocs = await CompanyFormSchema.countDocuments({ approval_status: false });
+        const totalPages = Math.ceil(totalDocs / limit);
+        
+        const getCompanyList = await CompanyFormSchema.find({ approval_status: false })
+            .sort({ _id: -1 })
+            .skip(skip)
+            .limit(limit); // This should return 15 items
+
+        res.send({
+            status: true,
+            data: getCompanyList,
+            currentPage: page,
+            totalPages: totalPages,
+            totalDocs: totalDocs,
+            message: "Company Form list retrieved Successfully"
+        });
+    } catch (e) {
+        res.send({status: false, data: e, message: "Couldn't get Company Form Data"});
     }
 }
 

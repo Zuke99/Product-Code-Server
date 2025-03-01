@@ -80,9 +80,30 @@ const deleteCompanyForm = async (req, res) => {
     res.send({status : true, data : deleteCompanyForm, message : "Form Deleted Successfully"});
 }
 
+const getCompanyFormsByDescription = async (req, res) => {
+    try {
+        const description = req.query.description;
+        const getCompanyFormsByDescription = await CompanyFormSchema.find({
+          desc_and_spec: { $regex: description, $options: 'i' }
+        });
+        res.send({
+            status: true, 
+            data: getCompanyFormsByDescription, 
+            message: "Form Retrieved Successfully"
+        });
+    } catch (e) {
+        res.send({
+            status: false, 
+            data: e, 
+            message: "Failed to retrieve forms"
+        });
+    }
+}
+
 module.exports = {
     createCompanyForm,
     getAllCompanyForms,
     approveCompanyForm,
-    deleteCompanyForm
+    deleteCompanyForm,
+    getCompanyFormsByDescription
 }

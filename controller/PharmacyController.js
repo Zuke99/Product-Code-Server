@@ -59,6 +59,7 @@ const getAllPharmacyForms = async(req, res) => {
 
 const getPharmacyFormsByDescription = async (req, res) => {
     try {
+        const description = req.params.description;
         const getPharmacyFormsByDescription = await PharmacySchema.find({
           desc_and_spec: { $regex: description, $options: 'i' }
         });
